@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FocuSnap - Account Deletion / アカウント削除</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans',
+                 'Noto Sans JP', sans-serif;
+    line-height: 1.8; color: #1a1a1a; background: #fafafa;
+    padding: 24px 16px 64px;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  .lang-switch {
+    display: flex; gap: 8px; justify-content: flex-end;
+    margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .lang-switch button {
+    padding: 6px 16px; border: 1px solid #ccc; border-radius: 20px;
+    background: #fff; cursor: pointer; font-size: 14px; color: #555;
+    transition: all .2s;
+  }
+  .lang-switch button.active {
+    background: #795dd6; color: #fff; border-color: #795dd6;
+  }
+  h1 { font-size: 24px; margin-bottom: 24px; border-bottom: 2px solid #795dd6; padding-bottom: 8px; }
+  h2 { font-size: 18px; margin: 32px 0 12px; color: #333; }
+  p, li { font-size: 15px; margin-bottom: 8px; }
+  ol, ul { padding-left: 24px; }
+  .lang-block { display: none; }
+  .lang-block.active { display: block; }
+  .date { margin-top: 32px; padding-top: 16px; border-top: 1px solid #ddd; color: #888; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="lang-switch">
+    <button onclick="switchLang('ja')" id="btn-ja">日本語</button>
+    <button onclick="switchLang('en')" id="btn-en">English</button>
+    <button onclick="switchLang('ko')" id="btn-ko">한국어</button>
+  </div>
+
+  <!-- Japanese -->
+  <div class="lang-block" id="lang-ja">
+    <h1>アカウント削除について（FocuSnap）</h1>
+    <p>FocuSnap は、学習の記録および学習継続を支援するアプリです。ユーザーは、アプリ内の操作により、いつでもアカウントおよび関連するデータを削除することができます。</p>
+
+    <h2>1. アカウント削除の方法</h2>
+    <p>FocuSnap アプリ内の以下の手順から、アカウント削除を行うことができます。</p>
+    <ol>
+      <li>FocuSnap アプリを起動します</li>
+      <li><strong>設定画面</strong>を開きます</li>
+      <li><strong>「アカウント削除」</strong>を選択します</li>
+      <li>表示される確認画面で、削除を確定します</li>
+    </ol>
+
+    <h2>2. 削除されるデータ</h2>
+    <p>アカウント削除を行うと、以下のデータが<strong>即時に削除</strong>されます。</p>
+    <ul>
+      <li>Firebase Authentication 上のユーザーアカウント</li>
+      <li>学習時間・学習履歴などの学習データ（Firestore）</li>
+      <li>勉強中に撮影された写真（Firebase Storage）</li>
+      <li>友達情報（相互認証データ）</li>
+      <li>チーム参加情報</li>
+    </ul>
+    <p>削除されたデータは、復元することはできません。</p>
+
+    <h2>3. データの削除タイミング</h2>
+    <p>アカウント削除操作が完了すると、関連するデータは<strong>即日（即時）削除</strong>されます。</p>
+
+    <h2>4. アプリを利用できない場合の対応</h2>
+    <p>アプリにログインできないなどの理由で、アプリ内からアカウント削除操作が行えない場合は、以下のメールアドレスまでご連絡ください。</p>
+    <p><strong>お問い合わせ先</strong><br>📧 focusnap.contact@gmail.com</p>
+    <p>ご本人確認のうえ、適切に対応いたします。</p>
+
+    <h2>5. 注意事項</h2>
+    <ul>
+      <li>アカウント削除後は、友達およびチームから自動的に削除されます。</li>
+      <li>チームから退出した場合、それ以降そのチームに写真が共有されることはありません。</li>
+    </ul>
+    <p class="date">最終更新日：2025年12月13日</p>
+  </div>
+
+  <!-- English -->
+  <div class="lang-block" id="lang-en">
+    <h1>Account Deletion (FocuSnap)</h1>
+    <p>FocuSnap is an app that supports study recording and study continuity. Users can delete their account and all associated data at any time through in-app operations.</p>
+
+    <h2>1. How to Delete Your Account</h2>
+    <p>You can delete your account through the following steps in the FocuSnap app:</p>
+    <ol>
+      <li>Open the FocuSnap app</li>
+      <li>Go to <strong>Settings</strong></li>
+      <li>Select <strong>"Delete Account"</strong></li>
+      <li>Confirm the deletion on the confirmation screen</li>
+    </ol>
+
+    <h2>2. Data That Will Be Deleted</h2>
+    <p>When you delete your account, the following data will be <strong>immediately deleted</strong>:</p>
+    <ul>
+      <li>Your user account on Firebase Authentication</li>
+      <li>Study data including study time and study history (Firestore)</li>
+      <li>Photos taken during study sessions (Firebase Storage)</li>
+      <li>Friend information (mutual authentication data)</li>
+      <li>Team participation information</li>
+    </ul>
+    <p>Deleted data cannot be recovered.</p>
+
+    <h2>3. Timing of Data Deletion</h2>
+    <p>Once the account deletion operation is completed, all associated data is <strong>deleted immediately</strong>.</p>
+
+    <h2>4. If You Cannot Use the App</h2>
+    <p>If you are unable to perform the account deletion from within the app (for example, if you cannot log in), please contact us at the following email address:</p>
+    <p><strong>Contact</strong><br>📧 focusnap.contact@gmail.com</p>
+    <p>We will respond appropriately after verifying your identity.</p>
+
+    <h2>5. Important Notes</h2>
+    <ul>
+      <li>After account deletion, you will be automatically removed from friends and teams.</li>
+      <li>Once you leave a team, photos will no longer be shared with that team.</li>
+    </ul>
+    <p class="date">Last updated: December 13, 2025</p>
+  </div>
+
+  <!-- Korean -->
+  <div class="lang-block" id="lang-ko">
+    <h1>계정 삭제 안내 (FocuSnap)</h1>
+    <p>FocuSnap은 학습 기록 및 학습 지속을 지원하는 앱입니다. 사용자는 앱 내 조작을 통해 언제든지 계정 및 관련 데이터를 삭제할 수 있습니다.</p>
+
+    <h2>1. 계정 삭제 방법</h2>
+    <ol>
+      <li>FocuSnap 앱을 실행합니다</li>
+      <li><strong>설정 화면</strong>을 엽니다</li>
+      <li><strong>"계정 삭제"</strong>를 선택합니다</li>
+      <li>확인 화면에서 삭제를 확정합니다</li>
+    </ol>
+
+    <h2>2. 삭제되는 데이터</h2>
+    <ul>
+      <li>Firebase Authentication의 사용자 계정</li>
+      <li>학습 시간, 학습 이력 등의 학습 데이터 (Firestore)</li>
+      <li>공부 중 촬영된 사진 (Firebase Storage)</li>
+      <li>친구 정보 (상호 인증 데이터)</li>
+      <li>팀 참가 정보</li>
+    </ul>
+    <p>삭제된 데이터는 복원할 수 없습니다.</p>
+
+    <h2>3. 앱을 이용할 수 없는 경우</h2>
+    <p><strong>문의처</strong><br>📧 focusnap.contact@gmail.com</p>
+
+    <p class="date">최종 업데이트: 2025년 12월 13일</p>
+  </div>
+</div>
+
+<script>
+function switchLang(lang) {
+  document.querySelectorAll('.lang-block').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+  const block = document.getElementById('lang-' + lang);
+  const btn = document.getElementById('btn-' + lang);
+  if (block) { block.classList.add('active'); }
+  else { document.getElementById('lang-ja').classList.add('active'); document.getElementById('btn-ja').classList.add('active'); return; }
+  if (btn) btn.classList.add('active');
+}
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const lang = params.get('lang') || navigator.language.split('-')[0] || 'ja';
+  const supported = ['ja', 'en', 'ko'];
+  switchLang(supported.includes(lang) ? lang : 'ja');
+})();
+</script>
+</body>
+</html>
