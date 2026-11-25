@@ -905,15 +905,29 @@ function switchLang(lang) {
   const block = document.getElementById('lang-' + lang);
   const btn = document.getElementById('btn-' + lang);
   if (block) { block.classList.add('active'); }
-  else { document.getElementById('lang-ja').classList.add('active'); document.getElementById('btn-ja').classList.add('active'); return; }
+  else { document.getElementById('lang-en').classList.add('active'); document.getElementById('btn-en').classList.add('active'); return; }
   if (btn) btn.classList.add('active');
 }
 (function() {
+  // Match the app: the explicit ?lang= wins, then the browser's preferred
+  // languages in order. Chinese with Hant or TW/HK/MO is Traditional (zh_TW);
+  // other Chinese is Simplified (zh). Anything unsupported falls back to English.
+  function mapLang(raw) {
+    if (!raw) return null;
+    const parts = String(raw).trim().replace(/_/g, '-').toLowerCase().split('-');
+    if (parts[0] === 'zh') {
+      return parts.slice(1).some(p => ['hant', 'tw', 'hk', 'mo'].includes(p)) ? 'zh_TW' : 'zh';
+    }
+    return ['ja', 'en', 'ko', 'hi'].includes(parts[0]) ? parts[0] : null;
+  }
   const params = new URLSearchParams(window.location.search);
-  const lang = params.get('lang') || navigator.language || 'ja';
-  const supported = ['ja', 'en', 'ko', 'zh', 'zh_TW', 'hi'];
-  const mappedLang = lang === 'zh-TW' || lang === 'zh-Hant' ? 'zh_TW' : lang.split('-')[0];
-  switchLang(supported.includes(mappedLang) ? mappedLang : (lang.startsWith('zh') ? 'zh' : 'ja'));
+  const candidates = [params.get('lang')]
+    .concat(Array.from(navigator.languages || []), [navigator.language]);
+  for (const candidate of candidates) {
+    const lang = mapLang(candidate);
+    if (lang) { switchLang(lang); return; }
+  }
+  switchLang('en');
 })();
 </script>
 </body>
